@@ -1,0 +1,22 @@
+@import "./components/header.css";
+@import "./base/variable.css";
+@import "./base/typography.css";
+@import "./components/side-bar.css";
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.app-side-bar {
+    position: fixed;
+    top: 10rem;
+    left: 2rem;
+ 
+}
+
+@media screen and (min-width: 200px) and (max-width: 750px) {
+   .app-side-bar {
+       display: none;
+       left: -100px;
+    }
+}

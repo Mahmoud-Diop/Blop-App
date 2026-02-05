@@ -1,0 +1,87 @@
+/* ===== FONTS ===== */
+body {
+    font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
+    font-size: 16px;
+    color: var(--text-primary);
+    background: var(--color-bg);
+    line-height: 1.6;
+}
+
+/* ===== HEADINGS ===== */
+h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+}
+
+h4 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* ===== TEXT ===== */
+p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+}
+
+.small-text {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* ===== LINKS ===== */
+
+/* ===== LABELS / META ===== */
+.meta {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* ===== BUTTON TEXT ===== */
+.btn-text {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+/* ===== PLACEHOLDER ===== */
+::placeholder {
+    color: var(--color-placeholder);
+}
+
+/* ===== TITLES ===== */
+.page-title {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* ===== AUTHOR / USERNAME ===== */
+.username {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.date {
+    font-size: 12px;
+    color: var(--text-muted);
+}
