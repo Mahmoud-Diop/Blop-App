@@ -8,6 +8,22 @@
     font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
 
 }
+.profile {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid var(--color-primary);
+    transition: 0.3s ease;
+}
+
+.profile:hover {
+    transform: scale(1.08);
+    border-color: var(--color-primary-hover);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
 
 .login-logout {
     display: flex;
@@ -57,10 +73,10 @@
 
 .menu {
     flex-direction: column;
-    position: fixed;
-    background-color: white;
+    position: absolute;
+    background-color: #fafafa;
     padding: 10px 0px;
-    box-shadow: 0 4px 8px 0 #0000000f;
+    box-shadow: 2px 4px 8px 0 #0000000f;
     border-radius: 12px;
     width: 100%;
     max-width: 400px;
@@ -109,6 +125,8 @@
     justify-content: center;
     color: var(--color-primary);
 }
+
+/*mobile*/
 @media screen and (max-width: 480px) {
 
     .login-logout {
@@ -130,29 +148,35 @@
     }
 
     .menu {
-        position: fixed;
+        position: absolute;
         left: 0;
         right: 0;
         bottom: 0;
         top: auto;
-        height: 50vh; /* moitié écran */
+        height: 50vh;
+        /* moitié écran */
         width: 100%;
         max-width: 100%;
         border-radius: 16px 16px 0 0;
 
         /* caché */
         transform: translateY(100%);
-        opacity: 1;
+        opacity: 0;
         pointer-events: none;
+        transition: transform 0.4s ease;
     }
 
     .menu.active {
         transform: translateY(0);
         pointer-events: auto;
+        opacity: 1;
+
     }
 }
-@media screen and (min-width: 600px) and (max-width: 750px) {
 
+
+/*tablette portrait*/
+@media (min-width: 481px) and (max-width: 768px) {
     .login-logout {
         display: none;
     }
@@ -177,15 +201,50 @@
         right: 20px;
         width: 320px;
         height: auto;
-         /* caché */
-        transform: translateY(100%);
-        opacity: 1;
+        /* caché */
+        transform: translateX(100%);
+        opacity: 0;
         pointer-events: none;
-        }
+        transition: transform 0.4s ease, opacity 0.4s ease;
+    }
 
     .menu.active {
-        transform: translateY(0);
+        transform: translateX(0);
         opacity: 1;
         pointer-events: auto;
     }
+}
+
+/*tablette paysage*/
+@media (min-width: 769px) and (max-width: 1024px) {
+
+
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 5px;
+    }
+
+
+
+    .menu {
+        position: absolute;
+        top: 90px;
+        right: 0px;
+        width: 320px;
+        height: 800px;
+        /* caché */
+        transform: translateX(100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .menu.active {
+        transform: translateX(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
 }

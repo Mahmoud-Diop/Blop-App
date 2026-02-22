@@ -4,8 +4,25 @@
             <h1>Blog</h1>
         </div>
         <div class="login-logout">
-            <a href="#" class="header-link">Login</a>
-            <a href="#" class="header-link">Logout</a>
+            @guest
+                <a href="{{ route('login') }}" class="header-link">login</a>
+                <a href="{{ route('register') }}" class="header-link">register</a>
+            @endguest
+            @auth
+                <a href="{{ route('profile.edit') }}">
+                    <img src="{{ auth()->user()->profile_image
+                        ? asset('storage/' . auth()->user()->profile_image)
+                        : asset('storage/profile.png') }}"
+                        alt="Profile Image" class="profile">
+                </a> 
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="header-link" style="border:none; cursor:pointer;">
+                        Logout
+                    </button>
+                </form>
+
+            @endauth
         </div>
 
         <div class="hamburger">
@@ -13,7 +30,7 @@
             <span class="bar"></span>
             <span class="bar"></span>
         </div>
-        
+
         <div class="menu">
 
             <a href="#" class="menu-link">
@@ -27,7 +44,7 @@
 
                 <h3>Home</h3>
             </a>
-            
+
             <a href="#" class="menu-link">
                 <div class="svg-icon">
                     <svg class="icon" viewBox="0 0 24 24" fill="none">

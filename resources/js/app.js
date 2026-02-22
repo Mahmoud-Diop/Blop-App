@@ -1,6 +1,7 @@
 import './bootstrap';
-import { initHeaderMenu } from './components/header';
 
-document.addEventListener('DOMContentLoaded', () => {
-    initHeaderMenu();
-});
+import Alpine from 'alpinejs';
+
+window.Alpine = Alpine;
+
+Alpine.start();

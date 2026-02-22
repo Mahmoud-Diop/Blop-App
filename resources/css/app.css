@@ -2,15 +2,22 @@
 @import "./base/variable.css";
 @import "./base/typography.css";
 @import "./components/side-bar.css";
+@import "./components/post.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    max-width: 1200px;
+    overflow-x: hidden;
+    
 }
 
 .app-side-bar {
     position: fixed;
     top: 10rem;
-    left: 2rem;
  
 }
 
