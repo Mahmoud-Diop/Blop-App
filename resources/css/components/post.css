@@ -1,5 +1,5 @@
 .post-container {
-    width: clamp(200px, 80%, 600px);
+    width: clamp(200px, 75%, 600px);
     margin: 20px auto;    
     padding: 15px;         
     box-sizing: border-box; 
@@ -29,12 +29,7 @@
     overflow: hidden;         
     text-overflow: ellipsis;  
 }
-.profile-img {
-    width: clamp(30px, 5vw, 50px);
-    height: clamp(30px, 5vw, 50px);
-    border-radius: 50%;
-    object-fit: cover;
-}
+
 
 
 /* bloc profil */
@@ -51,12 +46,7 @@
     object-fit: cover;
 }
 
-/* bloc meta */
-.meta1 {
-    display: flex;
-    align-items: center;
-    gap: 15px; /* espace entre date et bouton */
-}
+
 
 .follow-button {
     background-color:var(--color-primary);

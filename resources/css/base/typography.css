@@ -32,11 +32,6 @@ h4 {
 }
 
 /* ===== TEXT ===== */
-p {
-    font-size: 16px;
-    color: var(--text-secondary);
-    margin-bottom: var(--space-md);
-}
 
 .small-text {
     font-size: 13px;

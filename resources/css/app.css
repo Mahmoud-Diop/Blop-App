@@ -1,7 +1,6 @@
 @import "./components/header.css";
 @import "./base/variable.css";
 @import "./base/typography.css";
-@import "./components/side-bar.css";
 @import "./components/post.css";
 @tailwind base;
 @tailwind components;
@@ -12,18 +11,147 @@ body {
     font-family: Arial, sans-serif;
     max-width: 1200px;
     overflow-x: hidden;
-    
 }
 
-.app-side-bar {
+.side-bar-container {
+    height: calc(100vh - 60px);
     position: fixed;
-    top: 10rem;
- 
+    left: -110px;
+    top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 300px;
+    padding: 20px 0;
+    overflow-y: auto;
+    z-index: 10;
 }
 
-@media screen and (min-width: 200px) and (max-width: 750px) {
-   .app-side-bar {
-       display: none;
-       left: -100px;
+.sidebar-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+}
+
+.icone-svg {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.icone-svg a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--color-gray-dark);
+    font-size: 16px;
+    width: 100%;
+    padding: 10px 0;
+    transition: all 0.3s ease;
+}
+
+.icone-svg .tooltip-text {
+    position: absolute;
+    left: 160px;
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.icone-svg:hover .tooltip-text {
+    opacity: 1;
+    visibility: visible;
+    width: 100%;
+
+}
+
+/* Icône active (page courante) - orange */
+.icone-svg.active a {
+    color: #ff6b00;
+    /* Orange */
+}
+
+.icone-svg.active .icon {
+    color: #ff6b00;
+}
+
+/* Icône par défaut */
+.icon {
+    width: 24px;
+    height: 24px;
+    color: var(--color-gray-dark);
+    transition: color 0.3s ease;
+}
+
+/* Bouton de création de poste */
+.create-post-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.create-post-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: #ff6b00;
+    border-radius: 50%;
+    color: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.create-post-btn:hover {
+    background-color: #ff8533;
+    transform: scale(1.1);
+}
+
+.create-post-btn svg {
+    width: 24px;
+    height: 24px;
+    color: rgb(255, 255, 255);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .side-bar-container {
+        width: 60px;
+        padding: 20px 0;
+    }
+
+    .icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .create-post-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .create-post-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .side-bar-container {
+        display: none;
     }
 }

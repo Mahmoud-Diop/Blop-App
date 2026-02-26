@@ -4,10 +4,10 @@
     justify-content: space-between;
     align-items: center;
     padding: 4px 20px;
-    box-shadow: 0 4px 4px 0 #0000000f;
     font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
-
+    position: relative; /* Ajouté pour le positionnement du menu */
 }
+
 .profile {
     width: 42px;
     height: 42px;
@@ -24,12 +24,10 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-
 .login-logout {
     display: flex;
-    align-items: end;
+    align-items: center;
     gap: 20px;
-
 }
 
 .header-link {
@@ -56,7 +54,6 @@
 
 .hamburger {
     display: none;
-
 }
 
 .hamburger.active .bar:nth-child(1) {
@@ -82,12 +79,14 @@
     max-width: 400px;
     right: 20px;
     top: 70px;
+    display: flex; /* Ajouté */
 
     /* état caché */
     opacity: 0;
     pointer-events: none;
     transform: translateY(-10px);
     transition: 0.4s ease;
+    z-index: 1000; /* Ajouté */
 }
 
 /* état visible */
@@ -96,8 +95,6 @@
     pointer-events: auto;
     transform: translateY(0);
 }
-
-
 
 .menu-link {
     display: flex;
@@ -110,13 +107,11 @@
     border-radius: 8px;
 }
 
-/* Hover */
 .menu-link:hover {
     color: var(--color-bg);
     background-color: var(--color-primary-hover);
 }
 
-/* Icônes */
 .svg-icon {
     width: 30px;
     height: 30px;
@@ -126,9 +121,8 @@
     color: var(--color-primary);
 }
 
-/*mobile*/
+/* Mobile (jusqu'à 480px) */
 @media screen and (max-width: 480px) {
-
     .login-logout {
         display: none;
     }
@@ -145,37 +139,34 @@
         height: 3px;
         background-color: var(--color-primary);
         border-radius: 2px;
+        transition: all 0.3s ease;
     }
 
     .menu {
-        position: absolute;
+        position: fixed; /* Changé de absolute à fixed */
         left: 0;
         right: 0;
         bottom: 0;
         top: auto;
         height: 50vh;
-        /* moitié écran */
         width: 100%;
         max-width: 100%;
         border-radius: 16px 16px 0 0;
-
-        /* caché */
         transform: translateY(100%);
         opacity: 0;
         pointer-events: none;
         transition: transform 0.4s ease;
+        z-index: 1000;
     }
 
     .menu.active {
         transform: translateY(0);
-        pointer-events: auto;
         opacity: 1;
-
+        pointer-events: auto;
     }
 }
 
-
-/*tablette portrait*/
+/* Tablette portrait (481px à 768px) */
 @media (min-width: 481px) and (max-width: 768px) {
     .login-logout {
         display: none;
@@ -193,6 +184,7 @@
         height: 3px;
         background-color: var(--color-primary);
         border-radius: 2px;
+        transition: all 0.3s ease;
     }
 
     .menu {
@@ -201,11 +193,11 @@
         right: 20px;
         width: 320px;
         height: auto;
-        /* caché */
-        transform: translateX(100%);
+        transform: translateX(20px); /* Changé pour un léger décalage */
         opacity: 0;
         pointer-events: none;
-        transition: transform 0.4s ease, opacity 0.4s ease;
+        transition: all 0.4s ease;
+        z-index: 1000;
     }
 
     .menu.active {
@@ -215,36 +207,20 @@
     }
 }
 
-/*tablette paysage*/
-@media (min-width: 769px) and (max-width: 1024px) {
-
-
+/* Tablette paysage et desktop (769px et plus) */
+@media (min-width: 769px) {
     .hamburger {
-        display: none;
-        flex-direction: column;
-        cursor: pointer;
-        gap: 5px;
+        display: none !important; /* Forcé pour cacher sur desktop */
     }
-
-
-
+    
     .menu {
-        position: absolute;
-        top: 90px;
-        right: 0px;
-        width: 320px;
-        height: 800px;
-        /* caché */
-        transform: translateX(100%);
-        opacity: 0;
-        pointer-events: none;
-        transition: transform 0.4s ease, opacity 0.4s ease;
+        display: none !important; /* Caché sur desktop car on utilise login-logout */
     }
+}
 
-    .menu.active {
-        transform: translateX(0);
-        opacity: 1;
-        pointer-events: auto;
+/* Version desktop avec login-logout visible */
+@media (min-width: 769px) {
+    .login-logout {
+        display: flex !important;
     }
-
 }
