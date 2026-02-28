@@ -14,7 +14,6 @@ class Post extends Model
         'title',
         'image',
         'slug',
-        'CreationDate',
         'like',
         'user_id',
         'category_id',

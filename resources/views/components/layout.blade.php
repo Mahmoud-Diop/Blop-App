@@ -70,16 +70,30 @@
         </div>
 
         <!-- Bouton de création de poste -->
+        <!-- Bouton de création de poste -->
         <div class="create-post-container">
-            <a href="" class="create-post-btn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-linecap="round" />
-                </svg>
-            </a>
+            @auth
+                <a href="javascript:void(0)" onclick="openModal()" class="create-post-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-linecap="round" />
+                    </svg>
+                </a>
+            @else
+                <a href="{{ route('login') }}" class="create-post-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-linecap="round" />
+                    </svg>
+                </a>
+            @endauth
         </div>
+
     </div>
 
     <main class="container">
         {{ $slot }}
     </main>
+     <!-- Inclusion du modal -->
+    @auth
+        <x-modal-window :categories="$categories ?? []" />
+    @endauth
 </body>

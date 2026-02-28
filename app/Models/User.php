@@ -21,7 +21,8 @@ class User extends Authenticatable
         'pseudo',
         'email',
         'password',
-        'role'
+        'role',
+        'imageProfile', // Ajoutez ceci si vous voulez pouvoir le remplir plus tard
     ];
 
     /**

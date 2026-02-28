@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Dotenv\Util\Str as UtilStr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -14,12 +16,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts=Post::with('category','comments','user')
-                ->latest()
-                ->get();
+        $posts = Post::with('category', 'comments', 'user')
+            ->latest()
+            ->get();
 
-        return view('pages.index',compact('posts'));
-
+        return view('pages.index', compact('posts'));
     }
 
     /**
@@ -29,6 +30,8 @@ class PostController extends Controller
      */
     public function create()
     {
+
+        return view('pages.create');
         //
     }
 
@@ -40,7 +43,33 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $slug = Str::slug($request->title);
+
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
+            'image' => 'nullable|image|max:2048',
+            'slug' => 'unique:posts,slug,' . $slug,
+            'like' => 'nullable|integer|min:0',
+        ]);
+
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('posts', 'public');
+        }
+
+        $post = Post::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'category_id' => $request->category_id,
+            'user_id' => auth()->id(),
+            'slug' => $slug,
+            'image' => $imagePath,
+            'like' => $request->like ?? 0,
+        ]);
+
+        return redirect()->route('home')->with('success', 'Post créé avec succès!');
     }
 
     /**

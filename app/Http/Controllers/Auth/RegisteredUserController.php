@@ -32,20 +32,28 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'pseudo' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'imageProfile' => ['nullable', 'image', 'max:2048'], // 2MB m
         ]);
+
+        $imagePath = null;
+        if ($request->hasFile('imageProfile')) {
+            $imagePath = $request->file('imageProfile')->store('profiles', 'public');
+        }
 
         $user = User::create([
             'pseudo' => $request->pseudo,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'user',
+            'imageProfile' => $imagePath,
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
-    }
+   return redirect()->route('home');  // 'home' est le nom de ta route pour la page d'accueil    }
+}
 }
