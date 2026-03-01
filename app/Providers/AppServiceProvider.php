@@ -24,8 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Partager les catégories avec toutes les vues
-       View::composer('*', function ($view) {
+
+        View::composer(['components.modal-window', 'layouts.app','pages.edit'], function ($view) {
             $view->with('categories', Category::all());
         });
     }

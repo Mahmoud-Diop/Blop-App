@@ -1,7 +1,9 @@
+
+@import "./components/post.css";
+@import "./components/edit.css";
 @import "./components/header.css";
 @import "./base/variable.css";
 @import "./base/typography.css";
-@import "./components/post.css";
 @import "./components/modal.css";
 @tailwind base;
 @tailwind components;
@@ -10,7 +12,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    max-width: 1200px;
+    max-width: 100vmax;
     overflow-x: hidden;
 }
 

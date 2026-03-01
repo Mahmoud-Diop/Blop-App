@@ -1,20 +1,45 @@
 @props(['post'])
 <div class="post-container">
     <div class="post-header">
-        <div class="profile">
+        <div class="profil">
             <img src="{{ $post->user->profile_image ? asset('storage/' . $post->user->profile_image) : asset('storage/profile.png') }}"
                 alt="profil" class="profile-img">
-            <p class="pseudo">
-            <h5>{{ $post->user->pseudo }}</h5>
-            </p>
+            <div class="user-info">
+                <h5 class="pseudo">{{ $post->user->pseudo }}</h5>
+                <span class="date">{{ $post->created_at->diffForHumans() }}</span>
+            </div>
         </div>
 
-        <div class="meta1">
-            <p class="date">{{ $post->created_at->diffForHumans() }}</p>
+        <div class="post-actions">
             <button class="follow-button">Suivre</button>
+
+            @auth
+                @if (auth()->id() === $post->user_id)
+                    <div class="post-edit-actions">
+                        <a href="{{ route('posts.edit', $post) }}" class="edit-btn" title="Modifier">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" />
+                            </svg>
+                        </a>
+
+                        <form action="{{ route('posts.destroy', $post) }}" method="POST"
+                            onsubmit="return confirm('Supprimer ce post ?')" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="delete-btn" title="Supprimer">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2">
+                                    <path
+                                        d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                @endif
+            @endauth
         </div>
     </div>
-
     <div class="post-body">
         <h3>{{ $post->title }}</h3>
         <p>{{ $post->content }}</p>

@@ -1,5 +1,4 @@
 @props(['categories' => []])
-
 <!-- Modal de création de post -->
 <div id="postModal" class="modal-overlay" style="display: none;">
     <div class="modal-container">
@@ -49,7 +48,7 @@
             
             <div class="modal-footer">
                 <button type="button" onclick="closeModal()" class="btn-cancel">Annuler</button>
-                <button type="submit" class="btn-submit">Publier</button>
+                <button type="submit" class="btn-submit">Poster</button>
             </div>
         </form>
     </div>

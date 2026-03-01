@@ -28,7 +28,7 @@
             </div>
 
             <!-- notifications -->
-            <div class="icone-svg {{ request()->is('notifications*') ? 'active' : '' }}">
+            <div class="icone-svg {{ request()->routeIs('notifications*') ? 'active' : '' }}">
                 <a href="#">
                     <svg class="icon" viewBox="0 0 24 24" fill="none">
                         <path d="M18 8C18 5.238 15.761 3 13 3H11C8.239 3 6 5.238 6 8V14L4 16V17H20V16L18 14V8Z"
@@ -40,7 +40,7 @@
             </div>
 
             <!-- favorites -->
-            <div class="icone-svg {{ request()->is('favorites*') ? 'active' : '' }}">
+            <div class="icone-svg {{ request()->routeIs('favorites*') ? 'active' : '' }}">
                 <a href="#">
                     <svg class="icon" viewBox="0 0 24 24" fill="none">
                         <path
@@ -52,7 +52,7 @@
             </div>
 
             <!-- dashboard -->
-            <div class="icone-svg {{ request()->is('dashboard*') ? 'active' : '' }}">
+            <div class="icone-svg {{ request()->routeIs('dashboard*') ? 'active' : '' }}">
                 <a href="#">
                     <svg class="icon" viewBox="0 0 24 24" fill="none">
                         <rect x="3" y="3" width="8" height="8" rx="1.5" stroke="currentColor"
@@ -69,7 +69,6 @@
             </div>
         </div>
 
-        <!-- Bouton de création de poste -->
         <!-- Bouton de création de poste -->
         <div class="create-post-container">
             @auth
@@ -91,6 +90,7 @@
 
     <main class="container">
         {{ $slot }}
+
     </main>
      <!-- Inclusion du modal -->
     @auth
